@@ -35,6 +35,24 @@ app.post('/documents', async (req, res) => {
   }
 });
 
+// Route to get the GPX attachment
+app.get('/gpx', async (req, res) => {
+  try {
+    const docId = 'fab59831291ea4fdc8395e27fc000a6c'; // Use your actual document ID
+    const attachmentName = 'gravel.gpx'; // Use your actual attachment name
+
+    // Fetch the attachment
+    const attachment = await db.attachment.get(docId, attachmentName);
+
+    // Send the attachment data as a response
+    res.set('Content-Type', 'application/gpx+xml');
+    res.send(attachment);
+  } catch (error) {
+    console.error('Error fetching document or attachment:', error);
+    res.status(500).send('Error fetching document or attachment');
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });

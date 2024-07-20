@@ -1,17 +1,25 @@
-import React from 'react';
-import DisplayMap from './DisplayMap'
+import React, { useEffect, useState } from 'react';
 import MyCarousel from './MyCarousel'
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import Carousel from 'react-bootstrap/Carousel';
+import { Container, Row, Col } from 'react-bootstrap';
+import TripsCards from './TripsCards';
+import axios from 'axios';
 
 const ExploreTrips = () => {
+  const [trips, setTrips] = useState([]);
 
-  const cardsData = [
-    { title: 'Card 1', text: 'This is the first card.' },
-    { title: 'Card 2', text: 'This is the second card.' },
-    { title: 'Card 3', text: 'This is the third card.' },
-    // Add more cards as needed
-  ];
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get('http://localhost:5002/documents');
+        console.log(response)
+        setTrips(response.data)
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
 
 
   return (
@@ -26,15 +34,7 @@ const ExploreTrips = () => {
     <Row>
     <Container style={{width: '50%', paddingLeft: 0}}>
     <h3>List of Trips</h3>
-      {cardsData.map((card, index) => (
-        <Card key={index} className="mb-3">
-          <Card.Body>
-            <Card.Title>{card.title}</Card.Title>
-            <Card.Text>{card.text}</Card.Text>
-            <Card.Text>Some other information</Card.Text>
-          </Card.Body>
-        </Card>
-      ))}
+    <TripsCards cardsData={trips}></TripsCards>
     </Container>
     </Row>
   </Container>

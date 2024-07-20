@@ -3,18 +3,30 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { gpxToGeoJSON } from '../utils/gpxToGeoJSON';
+import axios from 'axios';
 
 const DisplayMap = () => {
   const [positions, setPositions] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}gpx/gravel.gpx`)
-      .then(response => response.text())
-      .then(data => {
+
+    const fetchDocuments = async () => {
+      try {
+        const response = await axios.get('http://localhost:5002/gpx', {
+          responseType: 'text',
+        });
+        const data = response.data;
         const geoJSONData = gpxToGeoJSON(data);
+
+        console.log(geoJSONData)
         const trackPoints = geoJSONData.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
         setPositions(trackPoints);
-      });
+      } catch (error) {
+        console.error('Error fetching documents:', error);
+      }
+    };
+
+    fetchDocuments();
   }, []);
 
   return (

@@ -5,24 +5,9 @@ import MyPastTrips from './components/MyPastTrips';
 import ExploreTrips from './components/ExploreTrips';
 import NavigationButtons from './components/NavigationButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect } from 'react';
-import axios from 'axios';
 
 
 const App = () => {
-
-  useEffect(() => {
-    const fetchDocuments = async () => {
-      try {
-        const response = await axios.get('http://localhost:5002/documents');
-        console.log(response)
-      } catch (error) {
-        console.error('Error fetching documents:', error);
-      }
-    };
-
-    fetchDocuments();
-  }, []);
 
   return (
     <Router>
