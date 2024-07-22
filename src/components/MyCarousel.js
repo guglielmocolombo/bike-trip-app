@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import DisplayMap from './DisplayMap';
+import DisplayMapCarousel from './DisplayMapCarousel';
 import { Container } from 'react-bootstrap';
 
 function MyCarousel() {
@@ -8,10 +8,10 @@ function MyCarousel() {
   return (
     <Carousel> 
       <Carousel.Item interval={3500}> 
-        <DisplayMap></DisplayMap>
+        <DisplayMapCarousel></DisplayMapCarousel>
       </Carousel.Item> 
       <Carousel.Item interval={3500}> 
-      <DisplayMap></DisplayMap>
+      <DisplayMapCarousel></DisplayMapCarousel>
       </Carousel.Item> 
     </Carousel> 
   );

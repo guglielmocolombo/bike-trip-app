@@ -11,7 +11,7 @@ const ExploreTrips = () => {
     const fetchDocuments = async () => {
       try {
         const response = await axios.get('http://localhost:5002/documents');
-        console.log(response)
+        console.log(Object.keys(response.data[0]._attachments)[0])
         setTrips(response.data)
       } catch (error) {
         console.error('Error fetching documents:', error);
@@ -24,20 +24,20 @@ const ExploreTrips = () => {
 
   return (
     <Container>
-    <h1 className='page-title'>Explore Trips</h1>
-    <Row>
-      <Col>
-        <h3>Most Liked Trips</h3>
-        <MyCarousel />
-      </Col>
-    </Row>
-    <Row>
-    <Container style={{width: '50%', paddingLeft: 0}}>
-    <h3>List of Trips</h3>
-    <TripsCards cardsData={trips}></TripsCards>
+      <h1 className='page-title'>Explore Trips</h1>
+      <Row>
+        <Col>
+          <h3>Most Liked Trips</h3>
+          <MyCarousel />
+        </Col>
+      </Row>
+      <Row>
+        <Container style={{ width: '50%', paddingLeft: 0 }}>
+          <h3>List of Trips</h3>
+          <TripsCards cardsData={trips}></TripsCards>
+        </Container>
+      </Row>
     </Container>
-    </Row>
-  </Container>
   );
 };
 

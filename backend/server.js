@@ -25,13 +25,21 @@ app.get('/documents', async (req, res) => {
   }
 });
 
-// Route to add a new document
-app.post('/documents', async (req, res) => {
+// Route to get the GPX attachment
+app.get('/:tripID/:gpxName', async (req, res) => {
   try {
-    const response = await db.insert(req.body);
-    res.json(response);
-  } catch (err) {
-    res.status(500).send(err);
+    const docId = req.params.tripID; // Use your actual document ID
+    const attachmentName = req.params.gpxName; // Use your actual attachment name
+
+    // Fetch the attachment
+    const attachment = await db.attachment.get(docId, attachmentName);
+
+    // Send the attachment data as a response
+    res.set('Content-Type', 'application/gpx+xml');
+    res.send(attachment);
+  } catch (error) {
+    console.error('Error fetching document or attachment:', error);
+    res.status(500).send('Error fetching document or attachment');
   }
 });
 

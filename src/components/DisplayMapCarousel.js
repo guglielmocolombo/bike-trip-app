@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { gpxToGeoJSON } from '../utils/gpxToGeoJSON';
 import axios from 'axios';
 
-const DisplayMap = () => {
+const DisplayMapCarousel = () => {
   const [positions, setPositions] = useState([]);
 
   useEffect(() => {
@@ -17,8 +17,7 @@ const DisplayMap = () => {
         });
         const data = response.data;
         const geoJSONData = gpxToGeoJSON(data);
-
-        console.log(geoJSONData)
+        
         const trackPoints = geoJSONData.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
         setPositions(trackPoints);
       } catch (error) {
@@ -61,4 +60,4 @@ const DisplayMap = () => {
   );
 };
 
-export default DisplayMap;
+export default DisplayMapCarousel;

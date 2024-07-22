@@ -5,6 +5,7 @@ import MyPastTrips from './components/MyPastTrips';
 import ExploreTrips from './components/ExploreTrips';
 import NavigationButtons from './components/NavigationButtons';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ExploreTripsMap from './components/ExploreTripsMap';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<NavigationButtons />} />
           <Route path="/create-trips" element={<CreateTrip />} />
           <Route path="/explore-trips" element={<ExploreTrips />} />
+          <Route path="/explore-trips/:filter" element={<ExploreTripsMap/>} />
           <Route path="/my-past-trips" element={<MyPastTrips />} />
         </Routes>
       </>
