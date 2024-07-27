@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bike-trip-app/static/css/main.ff02f4b5.css",
-    "main.js": "/bike-trip-app/static/js/main.cb4e7054.js",
+    "main.js": "/bike-trip-app/static/js/main.a0042ad2.js",
     "static/js/453.8acef8a8.chunk.js": "/bike-trip-app/static/js/453.8acef8a8.chunk.js",
     "index.html": "/bike-trip-app/index.html",
     "main.ff02f4b5.css.map": "/bike-trip-app/static/css/main.ff02f4b5.css.map",
-    "main.cb4e7054.js.map": "/bike-trip-app/static/js/main.cb4e7054.js.map",
+    "main.a0042ad2.js.map": "/bike-trip-app/static/js/main.a0042ad2.js.map",
     "453.8acef8a8.chunk.js.map": "/bike-trip-app/static/js/453.8acef8a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff02f4b5.css",
-    "static/js/main.cb4e7054.js"
+    "static/js/main.a0042ad2.js"
   ]
 }
