@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.712baab4.css",
-    "main.js": "./static/js/main.e092b612.js",
-    "static/js/453.8acef8a8.chunk.js": "./static/js/453.8acef8a8.chunk.js",
-    "index.html": "./index.html",
-    "main.712baab4.css.map": "./static/css/main.712baab4.css.map",
-    "main.e092b612.js.map": "./static/js/main.e092b612.js.map",
-    "453.8acef8a8.chunk.js.map": "./static/js/453.8acef8a8.chunk.js.map"
+    "main.css": "/bike-trip-app/static/css/main.712baab4.css",
+    "main.js": "/bike-trip-app/static/js/main.eb752d32.js",
+    "static/js/453.8acef8a8.chunk.js": "/bike-trip-app/static/js/453.8acef8a8.chunk.js",
+    "index.html": "/bike-trip-app/index.html",
+    "main.712baab4.css.map": "/bike-trip-app/static/css/main.712baab4.css.map",
+    "main.eb752d32.js.map": "/bike-trip-app/static/js/main.eb752d32.js.map",
+    "453.8acef8a8.chunk.js.map": "/bike-trip-app/static/js/453.8acef8a8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.712baab4.css",
-    "static/js/main.e092b612.js"
+    "static/js/main.eb752d32.js"
   ]
 }
