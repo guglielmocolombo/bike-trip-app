@@ -15,21 +15,9 @@ const GeolocationRecorder = () => {
         const timestamp = new Date(position.timestamp).toISOString();
 
         setLocations((prevLocations) => {
-          let newDistance = 0;
-          if (prevLocations.length > 0) {
-            const lastLocation = prevLocations[prevLocations.length - 1];
-            newDistance = calculateDistance(lastLocation.latitude, lastLocation.longitude, latitude, longitude);
-            console.log("The new distance is " + newDistance);
-          }
-
-          const updatedTotalDistance = totalDistance + newDistance;
-          setTotalDistance(updatedTotalDistance);
-
-          const speed = calculateSpeed(newDistance, 1.5);
-
           return [
             ...prevLocations,
-            { latitude, longitude, speed, timestamp, distance: updatedTotalDistance }
+            { latitude, longitude, timestamp }
           ];
         });
         setError(null);
@@ -74,18 +62,18 @@ const GeolocationRecorder = () => {
 
   const downloadGPX = () => {
     if (locations.length > 0) {
-      const gpxContent = `
-        <?xml version="1.0"?>
+      const gpxContent = `<?xml version="1.0"?>
         <gpx version="1.1" creator="GeolocationRecorderApp" xmlns="http://www.topografix.com/GPX/1/1">
+        <trk>
+          <name>Example Track</name>
+          <trkseg>
           ${locations.map(location => `
-            <wpt lat="${location.latitude}" lon="${location.longitude}">
+            <trkpt lat="${location.latitude}" lon="${location.longitude}">
               <time>${location.timestamp}</time>
-              <extensions>
-                <speed>${location.speed}</speed>
-                <distance>${location.distance}</distance>
-              </extensions>
-            </wpt>
+            </trkpt>
           `).join('')}
+          </trkseg>
+        </trk>
         </gpx>
       `;
       const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
@@ -123,9 +111,7 @@ const GeolocationRecorder = () => {
               <ul>
                 {locations.map((location, index) => (
                   <li key={index}>
-                    Lat: {location.latitude}, Lon: {location.longitude}, Time: {location.timestamp}, 
-                    Speed: {location.speed !== null ? `${location.speed} m/s` : 'N/A'}, 
-                    Distance: {location.distance.toFixed(2)} km
+                    Lat: {location.latitude}, Lon: {location.longitude}, Time: {location.timestamp}
                   </li>
                 ))}
               </ul>
