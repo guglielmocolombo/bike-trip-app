@@ -14,21 +14,24 @@ const GeolocationRecorder = () => {
         const { latitude, longitude } = position.coords;
         const timestamp = new Date(position.timestamp).toISOString();
 
-        let newDistance = 0;
-        if (locations.length > 0) {
-          const lastLocation = locations[locations.length - 1];
-          newDistance = calculateDistance(lastLocation.latitude,lastLocation.longitude,latitude,longitude);
-        }
+        setLocations((prevLocations) => {
+          let newDistance = 0;
+          if (prevLocations.length > 0) {
+            const lastLocation = prevLocations[prevLocations.length - 1];
+            newDistance = calculateDistance(lastLocation.latitude, lastLocation.longitude, latitude, longitude);
+            console.log("The new distance is " + newDistance);
+          }
 
-        const speed = calculateSpeed(newDistance, 1.5)
+          const updatedTotalDistance = totalDistance + newDistance;
+          setTotalDistance(updatedTotalDistance);
 
-        const updatedTotalDistance = totalDistance + newDistance;
-        setTotalDistance(updatedTotalDistance);
-        
-        setLocations((prevLocations) => [
-          ...prevLocations,
-          { latitude, longitude, speed, timestamp, distance: totalDistance + newDistance }
-        ]);
+          const speed = calculateSpeed(newDistance, 1.5);
+
+          return [
+            ...prevLocations,
+            { latitude, longitude, speed, timestamp, distance: updatedTotalDistance }
+          ];
+        });
         setError(null);
       }, (error) => {
         setError("Error obtaining location: " + error.message);
