@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Container, Button, Alert, Row, Col } from 'react-bootstrap';
+import { parseGPX } from '../utils/gpxFileParser';
 
 var options = {
   enableHighAccuracy: true,

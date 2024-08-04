@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 
-const SetMapCenter = ({ positions }) => {
+const SetMapCenter = ({ positions, hoveredPosition }) => {
   const map = useMap();
 
   useEffect(() => {
-    if (positions.length > 0) {
-      map.setView([positions[0][0], positions[0][1]], map.getZoom());
+    if(hoveredPosition && hoveredPosition.length > 0){
+      map.setView(hoveredPosition, map.getZoom());
+    } else if (positions.length > 0) {
+      map.setView([positions[Math.floor(positions.length / 2)][0], positions[Math.floor(positions.length / 2)][1]], map.getZoom());
     }
-  }, [positions, map]);
+  }, [hoveredPosition,, positions, map]);
 
   return null;
 };

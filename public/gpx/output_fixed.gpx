@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gpx version="1.1" creator="GeolocationRecorderApp">
+  <trk>
+    <name>Example Track</name>
+    <trkseg>
+      <trkpt lat="50.8180582" lon="4.38498294">
+        <time>2024-08-01T07:43:38Z</time>
+        <speed>3.91</speed>
+      </trkpt>
+      <trkpt lat="50.81799712" lon="4.38484751">
+        <time>2024-08-01T07:43:41Z</time>
+        <speed>3.91</speed>
+      </trkpt>
+      <trkpt lat="50.81801908" lon="4.38482998">
+        <time>2024-08-01T07:43:45Z</time>
+        <speed>0.68</speed>
+      </trkpt>
+      <trkpt lat="50.81806171" lon="4.38475542">
+        <time>2024-08-01T07:43:48Z</time>
+        <speed>2.36</speed>
+      </trkpt>
+      <trkpt lat="50.81812542" lon="4.38477716">
+        <time>2024-08-01T07:43:53Z</time>
+      <speed>1.45</speed>
+      </trkpt>
+      <trkpt lat="50.81815467" lon="4.38478621">
+        <time>2024-08-01T07:43:56Z</time>
+        <speed>1.11</speed>
+      </trkpt>
+      <trkpt lat="50.8181468" lon="4.38477367">
+        <time>2024-08-01T07:43:59Z</time>
+        <speed>0.41</speed>
+      </trkpt>
+      <trkpt lat="50.81815849" lon="4.38479614">
+        <time>2024-08-01T07:44:02Z</time>
+        <speed>0.68</speed>
+      </trkpt>
+      <trkpt lat="50.81815483" lon="4.38479111">
+        <time>2024-08-01T07:44:05Z</time>
+        <speed>0.18</speed>
+      </trkpt>
+      <trkpt lat="50.81815457" lon="4.38478245">
+        <time>2024-08-01T07:44:08Z</time>
+        <speed>0.20</speed>
+      </trkpt>
+      <trkpt lat="50.81813287" lon="4.3848285">
+        <time>2024-08-01T07:44:12Z</time>
+        <speed>1.01</speed>
+      </trkpt>
+      <trkpt lat="50.81805253" lon="4.38505157">
+        <time>2024-08-01T07:44:17Z</time>
+        <speed>3.62</speed>
+      </trkpt>
+      <trkpt lat="50.81802412" lon="4.38531473">
+        <time>2024-08-01T07:44:20Z</time>
+        <speed>6.27</speed>
+      </trkpt>
+      <trkpt lat="50.81798325" lon="4.38555023">
+        <time>2024-08-01T07:44:23Z</time>
+        <speed>5.74</speed>
+      </trkpt>
+      <trkpt lat="50.81793248" lon="4.38589997">
+        <time>2024-08-01T07:44:27Z</time>
+        <speed>6.32</speed>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
