@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Card } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
-import ViewMap from './ViewMap'
+import ViewMap from '../../ViewMap'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -29,12 +29,10 @@ ChartJS.register(
 );
 
 
-const SpeedDistanceGraph = ({ data }) => {
+const SpeedDistanceGraph = ({ data, setCircleCenter }) => {
     const distances = data.map(point => point.distance);
     const speeds = data.map(point => point.speed);
     const positions = data.map(point => [point.latitude, point.longitude])
-    const [circleCenter, setCircleCenter] = useState([])
-
     const chartData = {
         labels: distances,
         datasets: [
@@ -75,23 +73,11 @@ const SpeedDistanceGraph = ({ data }) => {
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <ViewMap positions={positions} hoveredPosition={circleCenter}></ViewMap>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Speed vs Distance</Card.Title>
-                            <Line data={chartData} options={options} />
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+        <Card style={{ height: '100%' }}>
+            <Card.Body style={{ height: '100%' }}>
+                <Line data={chartData} options={options} />
+            </Card.Body>
+        </Card>
     );
 };
 
