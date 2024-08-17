@@ -10,7 +10,7 @@ const SetMapCenter = ({ positions, hoveredPosition }) => {
     } else if (positions.length > 0) {
       map.setView([positions[Math.floor(positions.length / 2)][0], positions[Math.floor(positions.length / 2)][1]], map.getZoom());
     }
-  }, [hoveredPosition,, positions, map]);
+  }, [hoveredPosition, positions, map]);
 
   return null;
 };

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gpx version="1.1" creator="GeolocationRecorderApp">
   <trk>
-    <name>Example Track</name>
+    <name>Track1</name>
     <trkseg>
       <trkpt lat="50.8180582" lon="4.38498294">
         <time>2024-08-01T07:43:38Z</time>

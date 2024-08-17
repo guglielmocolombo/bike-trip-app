@@ -66,8 +66,6 @@ const SpeedDistanceGraph = ({ data, setCircleCenter }) => {
         onHover: (event, chartElement) => {
             if (chartElement.length > 0) {
                 setCircleCenter(positions[chartElement[0].index])
-            } else {
-                console.log("Nothing to declare")
             }
         }
     };

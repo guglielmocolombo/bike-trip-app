@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Button, Row, Col, Tabs, Tab } from 'react-bootstrap';
 
 
-const AnimateTracks = ({ positions, setCircleCenter }) => {
-    const [intervalDuration, setIntervalDuration] = useState(500); // Default to 1 second
+const AnimateTracks = ({ trip1, trip2, setCircleCenter1, setCircleCenter2 }) => {
+    const [intervalDuration, setIntervalDuration] = useState(500);
 
-    var index = 0;
+    var index1 = 0;
+    var index2 = 0;
 
     const startAnimation = () => {
         console.log("Start Circle Animation")
@@ -14,15 +15,26 @@ const AnimateTracks = ({ positions, setCircleCenter }) => {
 
     const stopAnimation = () => {
         console.log("Stop Circle Animation")
+        clearInterval();
     }
 
     function animateCircle() {
-        if (index < positions.length) {
-            setCircleCenter([positions[index].latitude, positions[index].longitude]);
-            index++
+        if (index1 < trip1.length) {
+            setCircleCenter1([trip1[index1].latitude, trip1[index1].longitude]);
+            index1++
         } else {
-            clearInterval();
+            index1 = -1
         }
+
+        if (index2 < trip2.length) {
+            setCircleCenter2([trip2[index2].latitude, trip2[index2].longitude]);
+            index2++
+        } else {
+            index2 = -1
+        }
+
+        if (index1==1 && index2==-1)
+            clearInterval()
     }
 
     return (

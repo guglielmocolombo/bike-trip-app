@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Polyline, Circle, useMapEvents } from 'react-leaflet';
 import SetMapCenter from '../../utils/SetMapCenter';
 import 'leaflet/dist/leaflet.css';
-import { Button, Row, Col, Tabs, Container } from 'react-bootstrap';
+import { Row, Col} from 'react-bootstrap';
 import AnimateTracks from './AnimateTrack/AnimateTrack';
-import TripCards from './TripCards';
 import SpeedDistanceGraph from './GraphTrack/SpeedDistanceGraph';
 
-const LiveTrack = ({ positions }) => {
+const SingleTrack = ({ trip }) => {
+    const positions = trip.points
     const fillRedOptions = { fillColor: 'red', color: 'red' };
     const [circleCenter, setCircleCenter] = useState([]);
     const [zoomLevel, setZoomLevel] = useState(13);
-    const [activeTab, setActiveTab] = useState("graph")
 
     const CircleWithDynamicRadius = ({ center, fillOptions, zoomLevel }) => {
         const [radius, setRadius] = useState(70);
@@ -58,30 +57,13 @@ const LiveTrack = ({ positions }) => {
                     )}
                 </MapContainer>
             </Row>
-            { /* 
-            <Row>
-                <Tabs id="justify-tab-example" className="mb-3" 
-                activeKey={activeTab}
-                onSelect={(k) => setActiveTab(k)}
-                justify>
-                    <Tab eventKey="graph" title="Graph"></Tab>
-                    <Tab eventKey="animation" title="Animation"></Tab>
-                </Tabs>
-            </Row>
-            <Row style={{ marginLeft: '20px', marginBottom: '10px' }} lg={"auto"}>
-                <TripCards></TripCards>
-            </Row>
-            */}
-            <Row>
-            <Container style={{ height: '400px', width: '100%', marginBottom: '10px' }}>
-                {activeTab === "animation" ? 
-                <AnimateTracks positions={positions} setCircleCenter={setCircleCenter}></AnimateTracks> 
-                :
-                <SpeedDistanceGraph data={positions} setCircleCenter={setCircleCenter}></SpeedDistanceGraph>}
-            </Container>
+            <Row style={{ marginLeft: "10px" }}>
+                <Col style={{ height: '400px', width: '60%' }}>
+                        <SpeedDistanceGraph data={positions} setCircleCenter={setCircleCenter}></SpeedDistanceGraph>
+                </Col>
             </Row>
         </>
     );
 };
 
-export default LiveTrack;
+export default SingleTrack;

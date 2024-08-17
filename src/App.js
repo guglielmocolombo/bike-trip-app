@@ -1,32 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import AnalyzeTrack from './components/AnalyzeTrack/AnalyzeTrack';
+import { Route, Routes, BrowserRouter as Router, Link } from 'react-router-dom';
+import SingleTrack from './components/AnalyzeTrack/SingleTrack';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Button, Alert, Row, Col } from 'react-bootstrap';
+import NavigationButtons from './components/NavigationButtons';
 import { parseGPX } from './utils/gpxFileParser';
+import { docClient } from './awsConfig';
+import DoubleTrack from './components/AnalyzeTrack/DoubleTrack';
 
 const App = () => {
-  const [track, setTrack] = useState(null);
+  const [availableTracks, setAvailableTracks] = useState([]);
+  const [chosenTracks, setChosenTracks] = useState([]);
 
+  console.log(chosenTracks.length)
+
+  
+/*
   useEffect(() => {
-    const fetchGPX = async () => {
+    const fetchData = async () => {
+      const params = {
+        TableName: 'bike-trip-app',
+      };
+
       try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/gpx/output_with_speed.gpx`);
-        const data = await response.text();
-        const features = parseGPX(data);
-        setTrack(features);
+        const result = await docClient.scan(params).promise();
+        const data = result.Items[0].gpx_track
+        const features = parseGPX(data)
+        setTrack(features)
       } catch (error) {
-        console.error('Error fetching GPX data:', error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchGPX();
-  }, []); // Empty dependency array means this useEffect runs once after initial render
+    fetchData();
+  }, []);
+*/
+
+  
+useEffect(() => {
+  const fetchGPX = async () => {
+    try {
+      let response = await fetch(`${process.env.PUBLIC_URL}/gpx/output_with_speed.gpx`);
+      let data = await response.text();
+      let feature1 = parseGPX(data);
+      setAvailableTracks(prevTracks => [...prevTracks, feature1]); // Use functional update
+
+      response = await fetch(`${process.env.PUBLIC_URL}/gpx/mytrack.gpx`);
+      data = await response.text();
+      let feature2 = parseGPX(data);
+      setAvailableTracks(prevTracks => [...prevTracks, feature2]); // Use functional update
+    } catch (error) {
+      console.error('Error fetching GPX data:', error);
+    }
+  };
+
+  fetchGPX();
+}, []);
+
+  
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
-      <h1>GPX Data Graph</h1>
-      <AnalyzeTrack positions={track ? track.points : []} />
-    </div>
+    <Router>
+    <>
+      <Routes>
+        <Route path="/bike-trip-app" element={<NavigationButtons chosenTracks={chosenTracks} setChosenTracks={setChosenTracks} availableTracks={availableTracks}/>} />
+        <Route path="/single-track" element={<SingleTrack trip={chosenTracks[0]}/>} />
+        <Route path="/double-track" element={<DoubleTrack trips={chosenTracks}/>} />
+      </Routes>
+    </>
+  </Router>
   );
 };
 
